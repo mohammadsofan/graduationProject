@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Visi_AI</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    #upload-status {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #007BFF;
+    }
+    input[type="file"] {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <h1 class="logo">Visi_AI</h1>
+      <ul class="nav-links">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#mission">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h2>Automated<br>Musculoskeletal<br>Disorder Detection</h2>
+      <p>Every second counts... and because every accurate diagnosis could save a life.</p>
+      <input type="file" id="image-upload" accept=".jpg,.jpeg,.png,.dcm">
+      <a class="upload-btn" id="upload-btn" aria-label="try our tool" href="predictPage.html" target="_blank">Try our tool</a>
+      <div id="upload-status"></div>
+    </div>
+  </section>
+
+  <!-- Our Mission -->
+  <section class="mission" id="mission">
+    <div class="container mission-flex">
+      <div class="mission-text">
+        <h4 class="subtitle">OUR MISSION</h4>
+        <h2>Automated Musculoskeletal Disorder Detection with Deep Learning</h2>
+        <p>
+          At VisiX AI, we seek to harness artificial intelligence (AI) to improve the diagnosis of musculoskeletal disorders through an intelligent platform based on deep learning models such as DenseNet and ResNet, trained on MURA data.
+        </p>
+        <a href="#contact">Get in touch</a>
+      </div>
+      <div class="mission-image">
+        <img src="images/mission-image.png" alt="Radiology samples" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="services-section" id="services">
+    <div class="container services-flex">
+      <div class="services-text">
+        <h4 class="subtitle">AI-Driven Analysis</h4>
+        <h2>Precision in every image</h2>
+      </div>
+    </div>
+    <div class="cards-container">
+      <!-- Card 1 -->
+      <a href="card1.html" class="card">
+        <img src="images/classification.jpg" alt="Image Classification" />
+        <div class="card-text">
+          <h3>Automated image classification</h3>
+          <p>Quickly classify radiology images with precision.</p>
+        </div>
+      </a>
+      
+      <!-- Card 2 -->
+      <a href="card2.html" class="card">
+        <img src="images/anomaly.jpg" alt="Anomaly Detection" />
+        <div class="card-text">
+          <h3 class="green">Anomaly detection</h3>
+          <p>Identify abnormalities in radiology images effectively.</p>
+        </div>
+      </a>
+  
+      <!-- Card 3 -->
+      <a href="card3.html" class="card">
+        <img src="images/comparison.jpg" alt="Image Comparison" />
+        <div class="card-text">
+          <h3>Image comparison</h3>
+          <p>Effortlessly compare radiology images over time.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <div class="form-section">
+        <h2>We’re here to assist you!</h2>
+        <form action="/submit" method="POST" onsubmit="event.preventDefault();">
+          <label>Name <span>*</span></label>
+          <input type="text" placeholder="Name" required />
+          
+          <label>Email address <span>*</span></label>
+          <input type="email" placeholder="email@website.com" required />
+          
+          <label>Phone number <span>*</span></label>
+          <input type="tel" placeholder="555-555-5555" required />
+          
+          <label>Message</label>
+          <textarea placeholder="Write your message here..."></textarea>
+          
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+
+      <div class="info-section">
+        <h3>Get in touch</h3>
+        <p><strong>Email:</strong> <a href="mailto:thraahadwi@gmail.com">thraahadwi@gmail.com</a></p>
+
+        <h3>Location</h3>
+        <p>Nablus, NBS PS</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Script -->
+  <script>
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".nav-links a");
+    // Scroll navigation highlight
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop - 70;
+        const sectionHeight = section.offsetHeight;
+        if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+          current = section.getAttribute("id");
+        }
+      });
+
+      navLinks.forEach((link) => {
+        link.classList.remove("active");
+        if (link.getAttribute("href").includes(current)) {
+          link.classList.add("active");
+        }
+      });
+    });
+
+    // Form submission (optional, if handling via JavaScript)
+    const form = document.querySelector(".contact-section form");
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const formData = new FormData(form);
+      try {
+        const response = await fetch("/submit", {
+          method: "POST",
+          body: formData
+        });
+        if (response.ok) {
+          alert("Message sent successfully!");
+          form.reset();
+        } else {
+          alert("Error sending message.");
+        }
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        alert("Error submitting form.");
+      }
+    });
+  </script>
+</body>
+</html>

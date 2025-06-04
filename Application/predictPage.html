@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MuscuScan - AI Musculoskeletal Detection</title>
+    <link rel="stylesheet" href="predictPageStyles.css"/>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>🏥 Visi_AI</h1>
+            <p>AI-Powered Musculoskeletal Disorders Detection</p>
+        </div>
+        
+        <div class="main-content">
+            <h2 style="margin-bottom: 20px; color: #2c3e50;">Supported Body Parts</h2>
+            <div class="body-parts">
+                <div class="body-part">ELBOW</div>
+                <div class="body-part">FINGER</div>
+                <div class="body-part">FOREARM</div>
+                <div class="body-part">HAND</div>
+                <div class="body-part">HUMERUS</div>
+                <div class="body-part">SHOULDER</div>
+                <div class="body-part">WRIST</div>
+            </div>
+            
+            <div class="upload-section">
+                <div class="upload-area">
+                    <div class="upload-icon">📷</div>
+                    <h3 style="margin-bottom: 10px; color: #2c3e50;">Upload X-Ray Images</h3>
+                    <p style="color: #666; margin-bottom: 20px;">Click to select or drag and drop multiple X-ray images</p>
+                    <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                        Choose Images
+                    </button>
+                    <input type="file" id="fileInput" class="file-input" multiple accept="image/*">
+                </div>
+                
+                <div class="hint">
+                    💡 <strong>Important:</strong> Our AI system currently supports X-ray analysis for these body parts only: Elbow, Finger, Forearm, Hand, Humerus, Shoulder, and Wrist. For better accuracy, upload multiple X-ray images of the same case from different angles (e.g., AP, lateral, oblique views).
+                </div>
+                
+                <div class="image-preview" id="imagePreview"></div>
+            </div>
+            
+            <button class="analyze-btn" id="analyzeBtn" disabled onclick="analyzeImages()">
+                🔍 Analyze Images
+            </button>
+            
+            <div id="results" style="display: none;"></div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+
+</body>
+</html>
